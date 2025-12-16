@@ -85,7 +85,7 @@
     letter-spacing: 0.18em;
   }
 
-  @screen md {
+  @media (min-width: 768px) {
     .micro-kicker {
       @apply text-sm;
     }
@@ -97,7 +97,7 @@
     color: hsl(171 65% 44% / 0.95);
   }
 
-  @screen md {
+  @media (min-width: 768px) {
     .micro-label {
       @apply text-xs;
     }
@@ -108,7 +108,7 @@
     letter-spacing: 0.02em;
   }
 
-  @screen md {
+  @media (min-width: 768px) {
     .micro-hint {
       @apply text-sm;
     }
