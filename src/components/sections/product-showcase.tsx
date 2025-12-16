@@ -81,8 +81,9 @@ export function ProductShowcase() {
               key={i}
               className="absolute w-[1.5%] aspect-square bg-red-500 rounded-full animate-pulse-glow"
               style={{
-                top: `${10 + Math.random() * 80}%`,
-                left: `${5 + Math.random() * 90}%`,
+                // Deterministic placement
+                top: `${10 + ((i * 17) % 80)}%`,
+                left: `${5 + ((i * 23) % 90)}%`,
                 animationDelay: `${i * 0.2}s`,
                 boxShadow: '0 0 12px rgba(220, 38, 38, 0.6)'
               }}
@@ -109,7 +110,8 @@ export function ProductShowcase() {
               style={{
                 height: '10%',
                 animationDelay: `${i * 0.05}s`,
-                animationDuration: `${0.6 + Math.random() * 0.6}s`
+                // Deterministic duration using index math
+                animationDuration: `${0.6 + ((i * 7) % 10) * 0.06}s`
               }}
             />
           ))}
@@ -129,10 +131,11 @@ export function ProductShowcase() {
               className="absolute w-[18%] h-[12%] border border-cyan-400/40 bg-cyan-900/40 backdrop-blur-md rounded-sm animate-float flex items-center justify-center text-[8px] md:text-[10px] font-mono text-cyan-200"
               style={{
                 top: `${10 + (i * 8)}%`, // Cascade down
-                left: `${10 + (Math.sin(i) * 30 + 30)}%`, // Meander horizontally
+                left: `${10 + (Math.sin(i * 10) * 30 + 30)}%`, // Meander horizontally (Math.sin is deterministic for integers)
                 animationDelay: `${i * 0.3}s`,
                 animationDuration: `${3 + i * 0.2}s`,
-                transform: `scale(${0.8 + Math.random() * 0.4})`
+                // Deterministic scale
+                transform: `scale(${0.8 + ((i * 3) % 5) * 0.1})`
               }}
             >
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mr-1 animate-pulse" />

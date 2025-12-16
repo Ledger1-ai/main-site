@@ -172,15 +172,15 @@ export function SuiteHero() {
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-8">
-            <span className="text-white">The Operating System for</span>
+            <span className="text-white">The Future is</span>
             <br />
             <span className="relative inline-block bg-gradient-to-r from-teal-400 via-cyan-200 to-teal-400 bg-clip-text text-transparent pb-2">
-              The 99%
+              Neuromimetic Business Architecture
             </span>
           </h1>
 
           <p className="text-lg md:text-xl lg:text-2xl text-cyan-200/60 max-w-4xl mx-auto mb-10 leading-relaxed">
-            Break the monopoly of Big Tech. Initialize your <span className="text-red-500 font-bold">Main Street Ontology</span> with a military-grade Intelligence Platform designed for survival and dominance.
+            Evolve beyond static software. Initialize your <span className="text-red-500 font-bold">Cognitive Enterprise</span> with a living, breathing ontology that thinks, adapts, and executes at the speed of thought.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
