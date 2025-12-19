@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -16,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ledger1 – The Main Street Ontology",
-  description: "The Operating System for Main Street. Connect every Object, Action, and Decision in your business with our pre-packaged AI Ontology.",
+  title: "Ledger1 – Neuromimetic Business Architecture",
+  description: "The Operating System for Main Street. Initialize your Cognitive Enterprise with a living, breathing ontology that thinks, adapts, and executes at the speed of thought.",
   applicationName: "Ledger1 Suite",
   keywords: [
     "Main Street Ontology",
@@ -58,26 +59,26 @@ export const metadata: Metadata = {
     canonical: "https://ledger1.ai",
   },
   openGraph: {
-    title: "Ledger1 – The Main Street Ontology",
-    description: "The Operating System for Main Street. Connect every Object, Action, and Decision in your business with our pre-packaged AI Ontology.",
+    title: "Ledger1 – Neuromimetic Business Architecture",
+    description: "The Operating System for Main Street. Initialize your Cognitive Enterprise with a living, breathing ontology that thinks, adapts, and executes at the speed of thought.",
     url: "https://ledger1.ai",
     siteName: "Ledger1 Suite",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://engram1.blob.core.windows.net/varuni/socialbanner.png",
-        width: 1536,
-        height: 1024,
-        alt: "Ledger1 Main Street Ontology",
+        url: "/l1logons.png",
+        width: 1200,
+        height: 630,
+        alt: "Ledger1 Neuromimetic Business Architecture",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ledger1 – The Main Street Ontology",
-    description: "The Operating System for Main Street. Connect every Object, Action, and Decision in your business with our pre-packaged AI Ontology.",
-    images: ["https://engram1.blob.core.windows.net/varuni/socialbanner.png"],
+    title: "Ledger1 – Neuromimetic Business Architecture",
+    description: "The Operating System for Main Street. Initialize your Cognitive Enterprise with a living, breathing ontology that thinks, adapts, and executes at the speed of thought.",
+    images: ["/l1logons.png"],
     creator: "@ledger1_ai",
   },
   robots: {
