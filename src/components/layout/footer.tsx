@@ -67,6 +67,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><a href="https://erp.ledger1.ai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Ledger1ERP</a></li>
               <li><a href="https://crm.ledger1.ai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Ledger1CRM</a></li>
+              <li><a href="https://cms.ledger1.ai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Ledger1CMS</a></li>
               <li><a href="https://voice.ledger1.ai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">VoiceHub</a></li>
               <li><a href="https://pay.ledger1.ai" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">PortalPay</a></li>
             </ul>
@@ -101,7 +102,7 @@ export function Footer() {
         <div className="py-6 border-t border-border/50">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4"/>
+              <Mail className="h-4 w-4" />
               <a href="mailto:info@theutilitycompany.co" className="hover:text-primary transition-colors">
                 info@theutilitycompany.co
               </a>
@@ -119,7 +120,7 @@ export function Footer() {
           </div>
         </div>
 
-          {/* Bottom Bar */}
+        {/* Bottom Bar */}
         <div className="py-6 border-t border-border/50">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-6">

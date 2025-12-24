@@ -44,6 +44,13 @@ export function SuiteHero() {
       description: "Lead generation, sales agents & social intelligence"
     },
     {
+      name: "Ledger1CMS",
+      logo: "/ledger1-cms-wide-logo.webp",
+      url: "https://cms.ledger1.ai",
+      tagline: "AI-Voice Powered Content Command Center",
+      description: "Manage media, docs, forms, website from one dashboard"
+    },
+    {
       name: "VoiceHub",
       logo: "/vhlogowide.png",
       url: "https://voice.ledger1.ai",
@@ -55,7 +62,16 @@ export function SuiteHero() {
       logo: "/pplogowide.png",
       url: "https://pay.ledger1.ai",
       tagline: "Web3-Native Commerce",
-      description: "Crypto payments, instant settlement, 90+ chains"
+      description: "Crypto payments, instant settlement, 90+ chains",
+      locked: false
+    },
+    {
+      name: "Anubis",
+      logo: "/anubis.svg", // Using the SVG we just created
+      url: "#",
+      tagline: "Autonomous Social Intelligence",
+      description: "AI Agents that post, engage, and grow your presence",
+      locked: true
     }
   ];
 
@@ -160,7 +176,8 @@ export function SuiteHero() {
       <div className="absolute inset-0 -z-10">
         <canvas ref={canvasRef} className="h-full w-full block" />
         {/* Subtle Grid Overlay */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03] pointer-events-none" />
+        {/* Subtle Grid Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.1] pointer-events-none" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
@@ -206,32 +223,58 @@ export function SuiteHero() {
             <a
               key={product.name}
               href={product.url}
-              target="_blank"
+              target={product.locked ? undefined : "_blank"}
               rel="noopener noreferrer"
-              className="group relative rounded-2xl border border-cyan-900/50 bg-cyan-950/20 backdrop-blur-sm p-6 md:p-8 hover:border-red-600/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+              className={`group relative rounded-2xl border bg-cyan-950/20 backdrop-blur-sm p-6 md:p-8 transition-all duration-300 overflow-hidden
+                ${product.locked
+                  ? "border-cyan-900/30 opacity-70 cursor-not-allowed grayscale-[0.8] hover:grayscale-0 hover:opacity-100 hover:border-cyan-500/30"
+                  : "border-cyan-900/50 hover:border-red-600/50 hover:-translate-y-1"
+                }
+              `}
+              onClick={(e) => product.locked && e.preventDefault()}
             >
-              {/* Red accent line on hover */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Red accent line on hover (only for unlocked) */}
+              {!product.locked && (
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              )}
 
               <div className="relative h-16 md:h-20 mb-6 flex items-center">
                 <Image
                   src={product.logo}
                   alt={product.name}
-                  fill
-                  className="object-contain object-left"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  height={80} // Fixed height constraint
+                  width={240} // Max width constraint
+                  className={`object-contain object-left h-16 w-auto ${product.locked ? 'opacity-80' : ''}`}
                 />
               </div>
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-red-400 transition-colors">{product.tagline}</h3>
-                <ArrowRight className="h-5 w-5 text-red-500 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                <h3 className={`text-xl md:text-2xl font-bold transition-colors
+                  ${product.locked ? "text-cyan-400 group-hover:text-cyan-300" : "text-white group-hover:text-red-400"}`
+                }>
+                  {product.tagline}
+                </h3>
+                {!product.locked && (
+                  <ArrowRight className="h-5 w-5 text-red-500 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                )}
               </div>
               <p className="text-cyan-200/60 text-sm md:text-base leading-relaxed">
                 {product.description}
               </p>
-              <div className="mt-6 inline-flex items-center text-sm font-bold text-red-500">
-                ACCESS_MODULE
-                <ArrowRight className="ml-1 h-4 w-4" />
+
+              <div className={`mt-6 inline-flex items-center text-sm font-bold tracking-wider
+                ${product.locked ? "text-cyan-600" : "text-red-500"}`
+              }>
+                {product.locked ? (
+                  <span className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+                    SYSTEM_LOCKED
+                  </span>
+                ) : (
+                  <>
+                    ACCESS_MODULE
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </>
+                )}
               </div>
             </a>
           ))}

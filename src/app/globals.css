@@ -262,6 +262,30 @@
   animation: scanline 2s linear infinite;
 }
 
+@keyframes qr-scan {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-scan-fast {
+  animation: qr-scan 2.25s linear forwards;
+}
+
 @keyframes radar-spin {
   0% {
     transform: rotate(0deg);
@@ -390,4 +414,40 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slide-up-fade-in {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up-fade {
+  animation: slide-up-fade-in 0.4s ease-out forwards;
+}
+
+.animate-ping-fast {
+  animation: ping 0.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }

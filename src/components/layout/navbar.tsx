@@ -31,6 +31,7 @@ export function Navbar() {
   const products = [
     { name: "Ledger1ERP", url: "https://erp.ledger1.ai" },
     { name: "Ledger1CRM", url: "https://crm.ledger1.ai" },
+    { name: "Ledger1CMS", url: "https://cms.ledger1.ai" },
     { name: "VoiceHub", url: "https://voice.ledger1.ai" },
     { name: "PortalPay", url: "https://pay.ledger1.ai" },
   ];
