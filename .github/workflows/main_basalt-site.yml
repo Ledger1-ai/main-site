@@ -40,6 +40,7 @@ jobs:
           NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID }}
           COSMOS_CONNECTION_STRING: ${{ secrets.COSMOS_CONNECTION_STRING }}
           COSMOS_DB_ID: ${{ secrets.COSMOS_DB_ID }}
+          COSMOS_CONTAINER_ID: ${{ secrets.COSMOS_CONTAINER_ID }}
           
         run: |
           npm install
