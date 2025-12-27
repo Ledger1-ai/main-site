@@ -32,8 +32,10 @@ jobs:
           COSMOS_CONNECTION_STRING: ${{ secrets.COSMOS_CONNECTION_STRING }}
           COSMOS_DB_ID: ${{ secrets.COSMOS_DB_ID }}
           COSMOS_CONTAINER_ID: ${{ secrets.COSMOS_CONTAINER_ID }}
-          
+
         run: |
+          # Clean any existing build artifacts to prevent stale cache
+          rm -rf .next
           npm install
           npm run build --if-present
           npm run test --if-present
