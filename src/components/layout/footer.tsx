@@ -18,7 +18,7 @@ export function Footer() {
     <footer className="relative z-10 border-t border-border/70 mt-16 bg-muted/20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Main Footer Content */}
+        {/* Main Footer Content  */}
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {/* Company Info */}
