@@ -27,6 +27,12 @@ function createNodes(count: number, width: number, height: number): Node[] {
 export function SuiteHero() {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const [isReducedMotion, setIsReducedMotion] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  // Set mounted after hydration
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const products = [
     {
@@ -85,6 +91,7 @@ export function SuiteHero() {
   }, []);
 
   React.useEffect(() => {
+    if (!mounted) return; // Skip on server/first render to avoid hydration mismatch
     const canvas = canvasRef.current;
     if (!canvas) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -169,10 +176,10 @@ export function SuiteHero() {
     ro.observe(canvas);
 
     return () => { cancelAnimationFrame(raf); ro.disconnect(); };
-  }, [isReducedMotion]);
+  }, [mounted, isReducedMotion]);
 
   return (
-    <section className="relative isolate overflow-hidden min-h-[100svh] pt-24 md:pt-32 bg-[#020609]">
+    <section className="relative isolate overflow-hidden min-h-[100svh] pt-16 md:pt-32 bg-[#020609]">
       <div className="absolute inset-0 -z-10">
         <canvas ref={canvasRef} className="h-full w-full block" />
         {/* Subtle Grid Overlay */}
@@ -180,9 +187,9 @@ export function SuiteHero() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.1] pointer-events-none" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-32">
         {/* Main headline */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <div className="inline-flex items-center rounded-full bg-cyan-950/30 border border-cyan-800/50 px-4 py-2 shadow-sm mb-6 animate-pulse">
             <Target className="h-4 w-4 mr-2 text-red-500" />
             <span className="text-sm font-bold text-cyan-200">The Main Street Ontology</span>
@@ -196,7 +203,7 @@ export function SuiteHero() {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl lg:text-2xl text-cyan-200/60 max-w-4xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl text-cyan-200/60 max-w-4xl mx-auto mb-6 md:mb-10 leading-relaxed">
             Evolve beyond static software. Initialize your <span className="text-red-500 font-bold">Cognitive Enterprise</span> with a living, breathing ontology that thinks, adapts, and executes at the speed of thought.
           </p>
 
@@ -218,7 +225,7 @@ export function SuiteHero() {
         </div>
 
         {/* Product Grid */}
-        <div id="products" className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-24">
+        <div id="products" className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-16 md:mt-32">
           {products.map((product, index) => (
             <a
               key={product.name}

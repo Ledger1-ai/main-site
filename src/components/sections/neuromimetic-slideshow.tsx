@@ -84,7 +84,7 @@ export function NeuromimeticSlideshow() {
 
                 {/* Main Slide Container */}
                 <div
-                    className="relative bg-cyan-950/20 border border-cyan-800/30 backdrop-blur-md rounded-3xl overflow-hidden min-h-[500px] md:min-h-[400px] flex flex-col md:flex-row group hover:border-teal-500/30 transition-colors duration-500"
+                    className="relative bg-cyan-950/20 border border-cyan-800/30 backdrop-blur-md rounded-3xl overflow-hidden min-h-0 md:min-h-[400px] flex flex-col md:flex-row group hover:border-teal-500/30 transition-colors duration-500"
                     onMouseEnter={() => setIsPlaying(false)}
                     onMouseLeave={() => setIsPlaying(true)}
                 >
@@ -98,26 +98,26 @@ export function NeuromimeticSlideshow() {
                     </div>
 
                     {/* Left: Text Content */}
-                    <div className="flex-1 p-8 md:p-12 flex flex-col justify-center relative z-20">
+                    <div className="flex-1 p-6 md:p-12 flex flex-col justify-center relative z-20 min-h-[320px] md:min-h-0">
                         {slides.map((slide, idx) => (
                             <div
                                 key={slide.id}
-                                className={`transition-all duration-700 absolute inset-0 p-8 md:p-12 flex flex-col justify-center ${idx === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+                                className={`transition-all duration-500 md:absolute md:inset-0 md:p-12 flex flex-col justify-center ${idx === current ? 'opacity-100 relative' : 'opacity-0 absolute inset-0 pointer-events-none'}`}
                             >
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="p-3 rounded-lg bg-cyan-950/50 border border-cyan-800/50">
+                                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6 flex-wrap">
+                                    <div className="p-2 md:p-3 rounded-lg bg-cyan-950/50 border border-cyan-800/50">
                                         {slide.icon}
                                     </div>
-                                    <span className="text-cyan-200/50 font-mono text-sm tracking-widest uppercase">
+                                    <span className="text-cyan-200/50 font-mono text-xs md:text-sm tracking-widest uppercase">
                                         Protocol 0{slide.id} // {slide.title}
                                     </span>
                                 </div>
 
-                                <h4 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                                <h4 className="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 leading-tight">
                                     {slide.headline}
                                 </h4>
 
-                                <p className="text-lg text-cyan-100/70 leading-relaxed mb-8">
+                                <p className="text-base md:text-lg text-cyan-100/70 leading-relaxed mb-6 md:mb-8">
                                     {slide.text}
                                 </p>
 
@@ -131,7 +131,7 @@ export function NeuromimeticSlideshow() {
                     </div>
 
                     {/* Right: Abstract Visualization Panel */}
-                    <div className="flex-1 bg-cyan-900/10 border-l border-cyan-800/30 relative overflow-hidden flex items-center justify-center min-h-[300px]">
+                    <div className="flex-1 bg-cyan-900/10 border-t md:border-t-0 md:border-l border-cyan-800/30 relative overflow-hidden flex items-center justify-center min-h-[250px] md:min-h-[300px]">
                         {/* Grid Overlay */}
                         <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.1)_1px,transparent_1px)] bg-[size:20px_20px] opacity-20" />
 
@@ -177,7 +177,7 @@ export function NeuromimeticSlideshow() {
                     </div>
 
                     {/* Controls */}
-                    <div className="absolute bottom-6 right-6 z-30 flex items-center gap-3">
+                    <div className="relative md:absolute bottom-0 md:bottom-6 right-0 md:right-6 z-30 flex items-center justify-center md:justify-end gap-3 py-4 md:py-0">
                         <button
                             onClick={() => changeSlide((current - 1 + slides.length) % slides.length)}
                             className="p-2 rounded-full bg-black/40 text-white hover:bg-teal-500/20 transition-colors border border-white/10"

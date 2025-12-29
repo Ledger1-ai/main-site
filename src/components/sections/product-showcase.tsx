@@ -297,7 +297,7 @@ export function ProductShowcase() {
 
               {/* Unique Visual Content */}
               <div className="flex-1 w-full">
-                <div className="relative aspect-video rounded-2xl overflow-hidden bg-cyan-950/20 border border-cyan-900/30 group hover:border-red-600/30 transition-all duration-500">
+                <div className="relative aspect-square md:aspect-video rounded-2xl overflow-hidden bg-cyan-950/20 border border-cyan-900/30 group hover:border-red-600/30 transition-all duration-500">
                   {/* Background Tint */}
                   <div className="absolute inset-0 bg-teal-500/5 group-hover:bg-red-500/5 transition-colors duration-500" />
 
@@ -338,6 +338,11 @@ export function ProductShowcase() {
 
 function PaymentVisualTrigger({ onInView, step }: { onInView: (v: boolean) => void, step: 'idle' | 'scanning' | 'processing' | 'success' }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -361,7 +366,7 @@ function PaymentVisualTrigger({ onInView, step }: { onInView: (v: boolean) => vo
       <div className="relative w-full h-full max-w-[90%] max-h-[90%] flex items-center justify-center">
 
         {/* Phone / Device Frame */}
-        <div className="relative w-48 h-80 bg-black/80 rounded-[2.5rem] border-4 border-cyan-900/50 shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-105">
+        <div className="relative w-36 h-64 md:w-48 md:h-80 bg-black/80 rounded-[2rem] md:rounded-[2.5rem] border-4 border-cyan-900/50 shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-105">
 
           {/* Dynamic Screen Content - Removed 'relative' to fix layout collapse */}
           <div className="absolute inset-1 bg-gradient-to-br from-gray-900 to-black rounded-[2rem] overflow-hidden flex flex-col items-center justify-center">
@@ -374,7 +379,7 @@ function PaymentVisualTrigger({ onInView, step }: { onInView: (v: boolean) => vo
               <div className="text-cyan-400 text-xs font-mono mb-3 animate-pulse tracking-widest">SCAN TO PAY</div>
               <div className="relative p-3 bg-white rounded-xl shadow-[0_0_20px_rgba(34,211,238,0.2)]">
                 {/* Realistic QR Code - SVG Pattern */}
-                <svg viewBox="0 0 33 33" className="w-28 h-28">
+                <svg viewBox="0 0 33 33" className="w-20 h-20 md:w-28 md:h-28">
                   <desc>QR Code</desc>
                   {/* Position Detection Patterns */}
                   <rect x="0" y="0" width="9" height="9" fill="black" />
@@ -407,7 +412,7 @@ function PaymentVisualTrigger({ onInView, step }: { onInView: (v: boolean) => vo
                 <div className="absolute -bottom-1.5 -left-1.5 w-5 h-5 border-b-[3px] border-l-[3px] border-cyan-500 rounded-bl shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                 <div className="absolute -bottom-1.5 -right-1.5 w-5 h-5 border-b-[3px] border-r-[3px] border-cyan-500 rounded-br shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
               </div>
-              <div className="mt-5 text-2xl font-bold text-white tracking-widest shadow-black drop-shadow-md">$24.00</div>
+              <div className="mt-4 md:mt-5 text-xl md:text-2xl font-bold text-white tracking-widest shadow-black drop-shadow-md">$24.00</div>
               <div className="text-cyan-400/50 text-[10px] font-mono mt-1 text-center leading-tight">
                 PortalPay • Instant<br />Reconciliation
               </div>
@@ -421,7 +426,7 @@ function PaymentVisualTrigger({ onInView, step }: { onInView: (v: boolean) => vo
 
             {/* SUCCESS STATE: Checkmark */}
             <div className={`absolute inset-0 flex flex-col items-center justify-center bg-cyan-600/10 backdrop-blur-md transition-all duration-500 rounded-[2rem] ${step === 'success' ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}>
-              <div className="flex items-center justify-center w-16 h-16 bg-cyan-500 rounded-full shadow-[0_0_40px_rgba(34,211,238,0.8)] animate-scale-in">
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-cyan-500 rounded-full shadow-[0_0_40px_rgba(34,211,238,0.8)] animate-scale-in">
                 <Check className="w-8 h-8 text-white stroke-[4]" />
               </div>
               <div className="mt-4 text-white font-bold text-lg tracking-wide drop-shadow-lg">PAYMENT SENT</div>
@@ -431,25 +436,58 @@ function PaymentVisualTrigger({ onInView, step }: { onInView: (v: boolean) => vo
           </div>
         </div>
 
-        {/* Ambient Particles - Floating Context */}
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-800/60 backdrop-blur-md transition-all duration-700 ${step === 'success' ? 'scale-110 opacity-0 translate-y-[-100px]' : 'scale-100 opacity-100'}`}
-            style={{
-              top: `${20 + (i * 12)}%`,
-              left: i % 2 === 0 ? '5%' : 'auto',
-              right: i % 2 !== 0 ? '5%' : 'auto',
-              transform: `translateY(${Math.sin(i) * 10}px)`,
-              transitionDelay: `${i * 100}ms`
-            }}
-          >
-            <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
-            <span className="text-xs font-bold text-cyan-100 font-mono tracking-wider">
-              {['BTC', 'SOL', 'ETH', 'XRP', 'USDC', 'USDT'][i]}
-            </span>
-          </div>
-        ))}
+        {/* Ambient Particles - Floating Context (mobile-optimized corners, full layout on desktop) */}
+        {mounted && (
+          <>
+            {/* Mobile Layout - 4 corners with grouped badges */}
+            <div className="md:hidden">
+              {/* Top-left: ETH */}
+              <div className={`absolute flex items-center gap-1.5 px-2 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 backdrop-blur-md transition-all duration-700 ${step === 'success' ? 'scale-110 opacity-0 -translate-y-8' : 'scale-100 opacity-100'}`}
+                style={{ top: '8%', left: '5%' }}>
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                <span className="text-[10px] font-bold text-cyan-100 font-mono">ETH</span>
+              </div>
+              {/* Top-right: SOL */}
+              <div className={`absolute flex items-center gap-1.5 px-2 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 backdrop-blur-md transition-all duration-700 ${step === 'success' ? 'scale-110 opacity-0 -translate-y-8' : 'scale-100 opacity-100'}`}
+                style={{ top: '8%', right: '5%', transitionDelay: '100ms' }}>
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                <span className="text-[10px] font-bold text-cyan-100 font-mono">SOL</span>
+              </div>
+              {/* Bottom-left: USDC */}
+              <div className={`absolute flex items-center gap-1.5 px-2 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 backdrop-blur-md transition-all duration-700 ${step === 'success' ? 'scale-110 opacity-0 translate-y-8' : 'scale-100 opacity-100'}`}
+                style={{ bottom: '8%', left: '5%', transitionDelay: '200ms' }}>
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                <span className="text-[10px] font-bold text-cyan-100 font-mono">USDC</span>
+              </div>
+              {/* Bottom-right: BTC */}
+              <div className={`absolute flex items-center gap-1.5 px-2 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 backdrop-blur-md transition-all duration-700 ${step === 'success' ? 'scale-110 opacity-0 translate-y-8' : 'scale-100 opacity-100'}`}
+                style={{ bottom: '8%', right: '5%', transitionDelay: '300ms' }}>
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                <span className="text-[10px] font-bold text-cyan-100 font-mono">BTC</span>
+              </div>
+            </div>
+
+            {/* Desktop Layout - Original 6 badges along sides */}
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className={`absolute hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-800/60 backdrop-blur-md transition-all duration-700 ${step === 'success' ? 'scale-110 opacity-0 translate-y-[-100px]' : 'scale-100 opacity-100'}`}
+                style={{
+                  top: `${20 + (i * 12)}%`,
+                  left: i % 2 === 0 ? '5%' : 'auto',
+                  right: i % 2 !== 0 ? '5%' : 'auto',
+                  transform: `translateY(${Math.sin(i) * 10}px)`,
+                  transitionDelay: `${i * 100}ms`
+                }}
+              >
+                <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+                <span className="text-xs font-bold text-cyan-100 font-mono tracking-wider">
+                  {['BTC', 'SOL', 'ETH', 'XRP', 'USDC', 'USDT'][i]}
+                </span>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
