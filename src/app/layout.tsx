@@ -4,7 +4,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 import { DemoVideoProvider } from "@/components/providers/demo-video-provider";
+import { BrandThemeProvider } from "@/components/providers/brand-theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -159,13 +161,17 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="stylesheet" href="https://use.typekit.net/eur3bvn.css" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <ThemeProvider>
           <DemoVideoProvider>
-            <div className="app-accent-bg animate-gradient-drift" />
-            <Navbar />
-            <main className="relative z-10">{children}</main>
+            <BrandThemeProvider>
+              <div className="app-accent-bg animate-gradient-drift" />
+              <Navbar />
+              <main className="relative z-10">{children}</main>
+              <Footer />
+            </BrandThemeProvider>
           </DemoVideoProvider>
         </ThemeProvider>
       </body>

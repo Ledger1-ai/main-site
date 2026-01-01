@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { ArrowRight, Brain, Network, Zap, Pause, Play, ChevronRight, ChevronLeft } from "lucide-react";
+import { useBrandTheme } from "@/components/providers/brand-theme-provider";
 
 const slides = [
     {
         id: 1,
-        icon: <Brain className="w-12 h-12 text-teal-400" />,
+        icon: Brain,
         title: "Language Defines Reality",
         headline: "Why 'Jargon' Matters",
         text: "In static systems, a 'Customer' is just a row in a database. In a Neuromimetic Ontology, concepts are living entities. Naming something accurately—defining its Objects, Actions, and Decisions—is the first step to controlling it.",
@@ -14,7 +15,7 @@ const slides = [
     },
     {
         id: 2,
-        icon: <Network className="w-12 h-12 text-red-500" />,
+        icon: Network,
         title: "Biological Business",
         headline: "Your Enterprise is Alive",
         text: "Markets don't follow rigid SQL schemas. They mutate. Your system must evolve at the speed of the market. Our architecture mimics the plasticity of a neural network, allowing new connections to form instantly without rewriting code.",
@@ -22,7 +23,7 @@ const slides = [
     },
     {
         id: 3,
-        icon: <Zap className="w-12 h-12 text-cyan-300" />,
+        icon: Zap,
         title: "Speed of Thought",
         headline: "Latency is Death",
         text: "When data is siloed, decisions lag. By unifying your business logic into a single Ontology, action potentials travel instantly from sensation (Market Signal) to reaction (Supply Chain Adjustment). This is the cognitive advantage.",
@@ -31,6 +32,7 @@ const slides = [
 ];
 
 export function NeuromimeticSlideshow() {
+    const { currentTheme } = useBrandTheme();
     const [current, setCurrent] = useState(0);
     const [isPlaying, setIsPlaying] = useState(true);
     const [progress, setProgress] = useState(0);
@@ -66,34 +68,45 @@ export function NeuromimeticSlideshow() {
         setProgress(0);
     };
 
+    const LinkIcon = slides[current].icon;
+
     return (
-        <section className="py-24 bg-[#020609] relative overflow-hidden border-b border-cyan-900/20">
+        <section className="py-24 bg-[#020609] relative overflow-hidden border-b border-white/5">
 
             {/* Background Ambience */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(20,184,166,0.05),transparent_70%)] pointer-events-none" />
+            <div
+                className="absolute inset-0 pointer-events-none transition-colors duration-1000"
+                style={{ background: `radial-gradient(circle at 50% 50%, ${currentTheme.color}10, transparent 70%)` }}
+            />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
 
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-sm font-bold text-red-500 tracking-[0.2em] mb-4 uppercase">System Philosophy</h2>
+                    <h2
+                        className="text-sm font-bold tracking-[0.2em] mb-4 uppercase transition-colors duration-500"
+                        style={{ color: currentTheme.color }}
+                    >
+                        System Philosophy
+                    </h2>
                     <h3 className="text-3xl md:text-5xl font-extrabold text-white">
-                        Why the <span className="text-teal-400">Ontology</span> Matters
+                        Why the <span className="transition-colors duration-500" style={{ color: currentTheme.color }}>Ontology</span> Matters
                     </h3>
                 </div>
 
                 {/* Main Slide Container */}
                 <div
-                    className="relative bg-cyan-950/20 border border-cyan-800/30 backdrop-blur-md rounded-3xl overflow-hidden min-h-0 md:min-h-[400px] flex flex-col md:flex-row group hover:border-teal-500/30 transition-colors duration-500"
+                    className="relative bg-black/40 border border-white/10 backdrop-blur-md rounded-3xl overflow-hidden min-h-0 md:min-h-[400px] flex flex-col md:flex-row group transition-all duration-500"
+                    style={{ borderColor: `${currentTheme.color}30` }}
                     onMouseEnter={() => setIsPlaying(false)}
                     onMouseLeave={() => setIsPlaying(true)}
                 >
 
                     {/* Progress Bar (Global Top) */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-cyan-900/50">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-white/10">
                         <div
-                            className="h-full bg-red-500/80 transition-all duration-75 ease-linear"
-                            style={{ width: `${progress}%` }}
+                            className="h-full transition-all duration-75 ease-linear"
+                            style={{ width: `${progress}%`, backgroundColor: currentTheme.color }}
                         />
                     </div>
 
@@ -105,10 +118,13 @@ export function NeuromimeticSlideshow() {
                                 className={`transition-all duration-500 md:absolute md:inset-0 md:p-12 flex flex-col justify-center ${idx === current ? 'opacity-100 relative' : 'opacity-0 absolute inset-0 pointer-events-none'}`}
                             >
                                 <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6 flex-wrap">
-                                    <div className="p-2 md:p-3 rounded-lg bg-cyan-950/50 border border-cyan-800/50">
-                                        {slide.icon}
+                                    <div
+                                        className="p-2 md:p-3 rounded-lg bg-black/50 border transition-colors duration-500"
+                                        style={{ borderColor: `${currentTheme.color}40` }}
+                                    >
+                                        <slide.icon className="w-12 h-12 transition-colors duration-500" style={{ color: currentTheme.color }} />
                                     </div>
-                                    <span className="text-cyan-200/50 font-mono text-xs md:text-sm tracking-widest uppercase">
+                                    <span className="text-muted-foreground/60 font-mono text-xs md:text-sm tracking-widest uppercase">
                                         Protocol 0{slide.id} // {slide.title}
                                     </span>
                                 </div>
@@ -117,12 +133,16 @@ export function NeuromimeticSlideshow() {
                                     {slide.headline}
                                 </h4>
 
-                                <p className="text-base md:text-lg text-cyan-100/70 leading-relaxed mb-6 md:mb-8">
+                                <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed mb-6 md:mb-8">
                                     {slide.text}
                                 </p>
 
                                 <div className="flex items-center gap-4">
-                                    <a href="/manifesto" className="text-red-400 font-bold text-sm tracking-wide group-hover:text-red-300 flex items-center gap-2 hover:translate-x-1 transition-transform">
+                                    <a
+                                        href="/manifesto"
+                                        className="font-bold text-sm tracking-wide flex items-center gap-2 hover:translate-x-1 transition-all duration-300"
+                                        style={{ color: currentTheme.color }}
+                                    >
                                         READ MANIFESTO <ArrowRight className="w-4 h-4" />
                                     </a>
                                 </div>
@@ -131,17 +151,23 @@ export function NeuromimeticSlideshow() {
                     </div>
 
                     {/* Right: Abstract Visualization Panel */}
-                    <div className="flex-1 bg-cyan-900/10 border-t md:border-t-0 md:border-l border-cyan-800/30 relative overflow-hidden flex items-center justify-center min-h-[250px] md:min-h-[300px]">
+                    <div className="flex-1 bg-black/20 border-t md:border-t-0 md:border-l border-white/10 relative overflow-hidden flex items-center justify-center min-h-[250px] md:min-h-[300px]">
                         {/* Grid Overlay */}
-                        <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.1)_1px,transparent_1px)] bg-[size:20px_20px] opacity-20" />
+                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] opacity-20" />
 
                         {/* Dynamic Visuals based on Slide */}
                         {current === 0 && (
-                            <div className="relative w-64 h-64 border border-teal-500/30 rounded-lg flex items-center justify-center animate-pulse-glow">
-                                <div className="absolute top-0 -left-12 bg-black/50 text-cyan-300 font-mono text-xs p-2 border border-cyan-700 rounded">
+                            <div
+                                className="relative w-64 h-64 border rounded-lg flex items-center justify-center animate-pulse-glow transition-colors duration-500"
+                                style={{ borderColor: `${currentTheme.color}50`, boxShadow: `0 0 30px ${currentTheme.color}10` }}
+                            >
+                                <div className="absolute top-0 -left-12 bg-black/80 text-white/70 font-mono text-xs p-2 border border-white/10 rounded">
                                     "Customer_ID": 1024
                                 </div>
-                                <div className="absolute bottom-12 -right-8 bg-black/50 text-red-400 font-mono text-xs p-2 border border-red-700 rounded">
+                                <div
+                                    className="absolute bottom-12 -right-8 bg-black/80 font-mono text-xs p-2 border rounded"
+                                    style={{ borderColor: `${currentTheme.color}50`, color: currentTheme.color }}
+                                >
                                     ERROR: Schema_Lock
                                 </div>
                                 <div className="text-white font-bold tracking-widest opacity-50">STATIC_DB</div>
@@ -151,11 +177,18 @@ export function NeuromimeticSlideshow() {
                         {current === 1 && (
                             <div className="relative w-full h-full flex items-center justify-center">
                                 <div className="relative w-48 h-48">
-                                    <div className="absolute inset-0 border-2 border-red-500/50 rounded-full animate-ping opacity-20" />
-                                    <div className="absolute inset-4 border border-teal-400/50 rounded-full animate-spin duration-[10s]" />
-                                    <Network className="absolute inset-0 m-auto w-16 h-16 text-white animate-pulse" />
-                                    <div className="absolute top-0 left-1/2 w-px h-24 bg-gradient-to-b from-transparent to-teal-500" />
-                                    <div className="absolute bottom-0 left-1/2 w-px h-24 bg-gradient-to-t from-transparent to-teal-500" />
+                                    <div
+                                        className="absolute inset-0 border-2 rounded-full animate-ping opacity-20"
+                                        style={{ borderColor: currentTheme.color }}
+                                    />
+                                    <div
+                                        className="absolute inset-4 border rounded-full animate-spin duration-[10s]"
+                                        style={{ borderColor: `${currentTheme.color}50` }}
+                                    />
+                                    <Network
+                                        className="absolute inset-0 m-auto w-16 h-16 text-white animate-pulse"
+                                        style={{ color: currentTheme.color }}
+                                    />
                                 </div>
                             </div>
                         )}
@@ -164,12 +197,18 @@ export function NeuromimeticSlideshow() {
                             <div className="relative w-full p-12">
                                 <div className="flex justify-between items-center mb-4">
                                     <div className="w-3 h-3 bg-white rounded-full shadow-[0_0_10px_white]" />
-                                    <div className="h-0.5 flex-1 bg-gradient-to-r from-white to-red-500 mx-4 relative overflow-hidden">
-                                        <div className="absolute inset-y-0 left-0 w-12 bg-white blur-md animate-slide-right" />
+                                    <div className="h-0.5 flex-1 bg-white/20 mx-4 relative overflow-hidden">
+                                        <div
+                                            className="absolute inset-y-0 left-0 w-12 blur-md animate-slide-right"
+                                            style={{ backgroundColor: currentTheme.color }}
+                                        />
                                     </div>
-                                    <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_10px_red]" />
+                                    <div
+                                        className="w-3 h-3 rounded-full"
+                                        style={{ backgroundColor: currentTheme.color, boxShadow: `0 0 10px ${currentTheme.color}` }}
+                                    />
                                 </div>
-                                <div className="font-mono text-xs text-center text-cyan-200/50 mt-2">
+                                <div className="font-mono text-xs text-center text-muted-foreground/50 mt-2">
                                     LATENCY: 0.00ms // SYNAPSE_FIRED
                                 </div>
                             </div>
@@ -180,21 +219,21 @@ export function NeuromimeticSlideshow() {
                     <div className="relative md:absolute bottom-0 md:bottom-6 right-0 md:right-6 z-30 flex items-center justify-center md:justify-end gap-3 py-4 md:py-0">
                         <button
                             onClick={() => changeSlide((current - 1 + slides.length) % slides.length)}
-                            className="p-2 rounded-full bg-black/40 text-white hover:bg-teal-500/20 transition-colors border border-white/10"
+                            className="p-2 rounded-full bg-black/40 text-white hover:bg-white/10 transition-colors border border-white/10"
                         >
                             <ChevronLeft className="w-5 h-5" />
                         </button>
 
                         <button
                             onClick={() => setIsPlaying(!isPlaying)}
-                            className="p-2 rounded-full bg-black/40 text-white hover:bg-teal-500/20 transition-colors border border-white/10"
+                            className="p-2 rounded-full bg-black/40 text-white hover:bg-white/10 transition-colors border border-white/10"
                         >
                             {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
                         </button>
 
                         <button
                             onClick={() => changeSlide((current + 1) % slides.length)}
-                            className="p-2 rounded-full bg-black/40 text-white hover:bg-teal-500/20 transition-colors border border-white/10"
+                            className="p-2 rounded-full bg-black/40 text-white hover:bg-white/10 transition-colors border border-white/10"
                         >
                             <ChevronRight className="w-5 h-5" />
                         </button>
@@ -208,7 +247,8 @@ export function NeuromimeticSlideshow() {
                         <button
                             key={idx}
                             onClick={() => changeSlide(idx)}
-                            className={`h-1 rounded-full transition-all duration-300 ${idx === current ? 'w-12 bg-teal-400' : 'w-4 bg-cyan-900/50 hover:bg-cyan-800'}`}
+                            className={`h-1 rounded-full transition-all duration-300 ${idx === current ? 'w-12' : 'w-4 bg-white/10 hover:bg-white/20'}`}
+                            style={{ backgroundColor: idx === current ? currentTheme.color : undefined }}
                         />
                     ))}
                 </div>

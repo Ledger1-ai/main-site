@@ -12,6 +12,7 @@ import {
   ChefHat,
   Award
 } from "lucide-react";
+import { useBrandTheme } from "@/components/providers/brand-theme-provider";
 
 // Social proof content moved under Case Studies
 const socialStats = [
@@ -144,6 +145,7 @@ const caseStudies = [
 
 export function CaseStudies() {
   const [activeCase, setActiveCase] = useState(caseStudies[0]);
+  const { currentTheme } = useBrandTheme();
 
   return (
     <section id="case-studies" className="relative py-24 bg-muted/20">
@@ -164,18 +166,15 @@ export function CaseStudies() {
           </p>
         </div>
 
-        
-
         {/* Case Study Selector */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {caseStudies.map((study) => (
             <button
               key={study.id}
-              className={`glass-pane rounded-xl p-6 text-left transition-all duration-300 hover:scale-105 ${
-                activeCase.id === study.id
+              className={`glass-pane rounded-xl p-6 text-left transition-all duration-300 hover:scale-105 ${activeCase.id === study.id
                   ? 'ring-2 ring-primary shadow-lg shadow-primary/20 bg-primary/5'
                   : 'hover:shadow-md'
-              }`}
+                }`}
               onClick={() => setActiveCase(study)}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -217,7 +216,7 @@ export function CaseStudies() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-blue-600 dark:text-blue-400 mb-2">Solution</h4>
+                  <h4 className="font-semibold mb-2" style={{ color: currentTheme.color }}>Solution</h4>
                   <p className="text-foreground">{activeCase.solution}</p>
                 </div>
 

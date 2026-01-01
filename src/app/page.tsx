@@ -2,7 +2,6 @@ import { SuiteHero } from "@/components/hero/suite-hero";
 import { ProductShowcase } from "@/components/sections/product-showcase";
 import { AboutSection } from "@/components/sections/about";
 import { CTASection } from "@/components/sections/cta-section";
-import { Footer } from "@/components/layout/footer";
 import { NeuromimeticSlideshow } from "@/components/sections/neuromimetic-slideshow";
 import { OntologyExplainer } from "@/components/sections/ontology-explainer";
 
@@ -15,7 +14,6 @@ export default function Home() {
       <ProductShowcase />
       <AboutSection />
       <CTASection />
-      <Footer />
     </div>
   );
 }

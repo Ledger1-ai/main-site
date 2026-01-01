@@ -2,7 +2,6 @@
 
 
 import { useEffect, useState, useMemo } from 'react';
-import { Footer } from "@/components/layout/footer";
 import { MarkdownRenderer } from "@/components/docs/MarkdownRenderer";
 import { Career } from '@/lib/cms/types';
 
@@ -31,7 +30,7 @@ export default function CareersPage() {
 
   return (
     <div className="min-h-screen">
-      <section className="relative py-20 bg-gradient-to-b from-background to-muted/20">
+      <section className="relative pt-32 pb-20 bg-gradient-to-b from-background to-muted/20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
@@ -239,7 +238,6 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 }

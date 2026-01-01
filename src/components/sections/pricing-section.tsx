@@ -143,13 +143,12 @@ export function PricingSection() {
                 <button
                   disabled={!ind.active}
                   onClick={() => ind.active && setSelectedIndustry(ind.key)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${
-                    ind.key === selectedIndustry
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${ind.key === selectedIndustry
                       ? 'bg-primary text-primary-foreground border-primary'
                       : ind.active
                         ? 'bg-card border-border hover:bg-muted'
                         : 'bg-muted text-muted-foreground border-border opacity-60 cursor-not-allowed'
-                  }`}
+                    }`}
                   title={ind.active ? ind.label : `${ind.label} (coming soon)`}
                 >
                   {ind.label}
@@ -161,17 +160,15 @@ export function PricingSection() {
           {/* Billing Toggle */}
           <div className="inline-flex items-center bg-muted rounded-lg p-1 mb-8">
             <button
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                billingCycle === "monthly" ? "bg-background shadow-sm" : "text-muted-foreground"
-              }`}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${billingCycle === "monthly" ? "bg-background shadow-sm" : "text-muted-foreground"
+                }`}
               onClick={() => setBillingCycle("monthly")}
             >
               Monthly
             </button>
             <button
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                billingCycle === "annual" ? "bg-background shadow-sm" : "text-muted-foreground"
-              }`}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${billingCycle === "annual" ? "bg-background shadow-sm" : "text-muted-foreground"
+                }`}
               onClick={() => setBillingCycle("annual")}
             >
               Annual
@@ -187,9 +184,8 @@ export function PricingSection() {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative glass-pane rounded-2xl p-8 ${
-                plan.popular ? "ring-2 ring-primary shadow-lg shadow-primary/20" : ""
-              }`}
+              className={`relative glass-pane rounded-2xl p-8 ${plan.popular ? "ring-2 ring-primary shadow-lg shadow-primary/20" : ""
+                }`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -217,17 +213,16 @@ export function PricingSection() {
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <Check className="h-4 w-4 text-primary flex-shrink-0" />
                     <span className="text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <a href="https://calendly.com/founders-tuc/ledger1-info-session" target="_blank" rel="noopener noreferrer" className={`block text-center w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                plan.popular
+              <a href="https://calendly.com/founders-tuc/ledger1-info-session" target="_blank" rel="noopener noreferrer" className={`block text-center w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${plan.popular
                   ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:shadow-lg hover:scale-105"
                   : "bg-muted hover:bg-muted/80"
-              }`}>
+                }`}>
                 {plan.cta}
                 <ArrowRight className="inline h-4 w-4 ml-2" />
               </a>
@@ -288,7 +283,7 @@ export function PricingSection() {
                   <ul className="space-y-3">
                     {tokenizationPackage.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-primary flex-shrink-0" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
@@ -353,15 +348,15 @@ export function PricingSection() {
           </p>
           <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-primary" />
               Tailored proposals for multi-location groups
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-primary" />
               SLA options and uptime guarantees
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-primary" />
               White‑glove onboarding available
             </div>
           </div>

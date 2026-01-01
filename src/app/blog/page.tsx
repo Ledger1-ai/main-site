@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Footer } from "@/components/layout/footer";
 import { getAllPosts } from "@/lib/blog/posts";
 
 export const metadata: Metadata = {
@@ -13,7 +12,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
   return (
     <div className="min-h-screen">
-      <section className="relative py-20 bg-gradient-to-b from-background to-muted/20">
+      <section className="relative pt-32 pb-20 bg-gradient-to-b from-background to-muted/20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">Blog</h1>
           <p className="text-lg text-muted-foreground">Product updates and industry perspectives.</p>
@@ -52,7 +51,6 @@ export default function BlogPage() {
           )}
         </div>
       </section>
-      <Footer />
     </div>
   );
 }

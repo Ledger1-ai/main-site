@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: "Press – BasaltHQ",
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 export default function PressPage() {
   return (
     <div className="min-h-screen">
-      <section className="relative py-20 bg-gradient-to-b from-background to-muted/20">
+      <section className="relative pt-32 pb-20 bg-gradient-to-b from-background to-muted/20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-3">Press</h1>
           <p className="text-lg text-muted-foreground mb-6">For media inquiries, contact <a href="mailto:info@theutilitycompany.co" className="underline">info@theutilitycompany.co</a>.</p>
@@ -24,7 +23,6 @@ export default function PressPage() {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 }

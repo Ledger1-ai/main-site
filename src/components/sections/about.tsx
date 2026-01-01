@@ -1,16 +1,31 @@
+"use client";
+
 import { Check, Layers, Sliders, Sparkles, TrendingUp, Target, Shield, Zap, Users, Brain } from "lucide-react";
+import { useBrandTheme } from "@/components/providers/brand-theme-provider";
 
 export function AboutSection() {
+  const { currentTheme } = useBrandTheme();
+
   return (
     <section id="vision" className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 bg-[#020609]">
-      <div className="glass-pane rounded-3xl ring-1 ring-cyan-900/30 p-8 md:p-12 bg-cyan-950/20 backdrop-blur-md">
+      <div
+        className="glass-pane rounded-3xl ring-1 p-8 md:p-12 backdrop-blur-md"
+        style={{
+          backgroundColor: `${currentTheme.color}0D`, // 5% opacity
+          borderColor: `${currentTheme.color}33`, // 20% opacity
+          boxShadow: `0 0 40px ${currentTheme.color}1A` // 10% opacity
+        }}
+      >
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-2">Democratizing the Ontology</h2>
-        <div className="text-[11px] uppercase tracking-wider text-red-500 opacity-80 font-mono mb-8 flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+        <div
+          className="text-[11px] uppercase tracking-wider opacity-80 font-mono mb-8 flex items-center gap-2"
+          style={{ color: currentTheme.color }}
+        >
+          <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: currentTheme.color }} />
           MISSION_STATUS: ACTIVE
         </div>
 
-        <div className="prose prose-invert max-w-none text-cyan-200/60 space-y-6 text-lg leading-relaxed">
+        <div className="prose prose-invert max-w-none space-y-6 text-lg leading-relaxed" style={{ color: `${currentTheme.color}99` }}>
           <p>
             <span className="text-white font-semibold">Intelligence is power.</span> For too long, the Fortune 500 has hoarded the world's most advanced ontologies—digital twins that allow them to model, predict, and control markets with god-like efficiency. Companies like Palantir built the weapons for Wall Street.
           </p>
@@ -18,41 +33,65 @@ export function AboutSection() {
             <span className="text-white font-semibold">We built the weapon for you.</span> BasaltHQ is not just "software". It is a pre-packaged, AI-driven Ontology designed specifically for Main Street. We have taken the same comprehensive "Object-Action-Decision" architecture used by trillion-dollar asset managers and compressed it into an accessible, autonomous operating system.
           </p>
           <p>
-            By digitizing your reality into <span className="text-teal-400 font-mono text-sm">Objects</span>, <span className="text-red-400 font-mono text-sm">Actions</span>, and <span className="text-slate-200 font-mono text-sm">Decisions</span>, we give you the same analytical supremacy. Whether you are running a restaurant chain, a retail empire, or a service fleet, the Main Street Ontology levels the battlefield.
+            By digitizing your reality into <span className="font-mono text-sm" style={{ color: currentTheme.color }}>Objects</span>, <span className="font-mono text-sm" style={{ color: currentTheme.color }}>Actions</span>, and <span className="font-mono text-sm text-slate-200">Decisions</span>, we give you the same analytical supremacy. Whether you are running a restaurant chain, a retail empire, or a service fleet, the Main Street Ontology levels the battlefield.
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="group rounded-xl p-6 bg-cyan-950/30 border border-cyan-900/30 hover:border-teal-500/30 transition-all hover:-translate-y-1">
-            <div className="mb-4 inline-flex p-2 rounded-lg bg-teal-950/50 text-teal-400">
+          <div
+            className="group rounded-xl p-6 border transition-all hover:-translate-y-1"
+            style={{
+              backgroundColor: `${currentTheme.color}0D`,
+              borderColor: `${currentTheme.color}33`
+            }}
+          >
+            <div className="mb-4 inline-flex p-2 rounded-lg" style={{ backgroundColor: `${currentTheme.color}1A`, color: currentTheme.color }}>
               <Target className="h-5 w-5" />
             </div>
             <h3 className="text-base font-bold text-white mb-2">Anti-Fragile</h3>
-            <p className="text-sm text-cyan-200/50">Built to withstand market volatility through superior intelligence.</p>
+            <p className="text-sm" style={{ color: `${currentTheme.color}80` }}>Built to withstand market volatility through superior intelligence.</p>
           </div>
 
-          <div className="group rounded-xl p-6 bg-cyan-950/30 border border-cyan-900/30 hover:border-teal-500/30 transition-all hover:-translate-y-1">
-            <div className="mb-4 inline-flex p-2 rounded-lg bg-teal-950/50 text-teal-400">
+          <div
+            className="group rounded-xl p-6 border transition-all hover:-translate-y-1"
+            style={{
+              backgroundColor: `${currentTheme.color}0D`,
+              borderColor: `${currentTheme.color}33`
+            }}
+          >
+            <div className="mb-4 inline-flex p-2 rounded-lg" style={{ backgroundColor: `${currentTheme.color}1A`, color: currentTheme.color }}>
               <Brain className="h-5 w-5" />
             </div>
             <h3 className="text-base font-bold text-white mb-2">AI Supremacy</h3>
-            <p className="text-sm text-cyan-200/50">Autonomous agents that out-think and out-execute the competition.</p>
+            <p className="text-sm" style={{ color: `${currentTheme.color}80` }}>Autonomous agents that out-think and out-execute the competition.</p>
           </div>
 
-          <div className="group rounded-xl p-6 bg-cyan-950/30 border border-cyan-900/30 hover:border-teal-500/30 transition-all hover:-translate-y-1">
-            <div className="mb-4 inline-flex p-2 rounded-lg bg-teal-950/50 text-teal-400">
+          <div
+            className="group rounded-xl p-6 border transition-all hover:-translate-y-1"
+            style={{
+              backgroundColor: `${currentTheme.color}0D`,
+              borderColor: `${currentTheme.color}33`
+            }}
+          >
+            <div className="mb-4 inline-flex p-2 rounded-lg" style={{ backgroundColor: `${currentTheme.color}1A`, color: currentTheme.color }}>
               <Shield className="h-5 w-5" />
             </div>
             <h3 className="text-base font-bold text-white mb-2">Sovereignty</h3>
-            <p className="text-sm text-cyan-200/50">Ownership of your data, your relationships, and your future.</p>
+            <p className="text-sm" style={{ color: `${currentTheme.color}80` }}>Ownership of your data, your relationships, and your future.</p>
           </div>
 
-          <div className="group rounded-xl p-6 bg-cyan-950/30 border border-cyan-900/30 hover:border-red-500/30 transition-all hover:-translate-y-1">
-            <div className="mb-4 inline-flex p-2 rounded-lg bg-red-950/50 text-red-500">
+          <div
+            className="group rounded-xl p-6 border transition-all hover:-translate-y-1"
+            style={{
+              backgroundColor: `${currentTheme.color}0D`,
+              borderColor: `${currentTheme.color}33`
+            }}
+          >
+            <div className="mb-4 inline-flex p-2 rounded-lg" style={{ backgroundColor: `${currentTheme.color}1A`, color: currentTheme.color }}>
               <Users className="h-5 w-5" />
             </div>
             <h3 className="text-base font-bold text-white mb-2">The Resistance</h3>
-            <p className="text-sm text-cyan-200/50">Join the network of independent businesses building the new economy.</p>
+            <p className="text-sm" style={{ color: `${currentTheme.color}80` }}>Join the network of independent businesses building the new economy.</p>
           </div>
         </div>
       </div>

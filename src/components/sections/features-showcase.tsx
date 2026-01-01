@@ -10,16 +10,13 @@ import {
   Calendar,
   Bot,
   Zap,
-  Shield,
-  Smartphone,
   TrendingUp,
-  Clock,
-  Star,
   Utensils,
   MessageSquare,
   BookOpen,
   Square as SquareIcon,
 } from "lucide-react";
+import { useBrandTheme } from "@/components/providers/brand-theme-provider";
 
 const features = [
   {
@@ -27,7 +24,6 @@ const features = [
     title: "Varuni — AI Operations Agent",
     description: "A conversational agent that plans, analyzes, and executes across your ERP. She uses live data and first‑class tool access to get real work done.",
     icon: Bot,
-    gradient: "from-fuchsia-500 to-violet-500",
     benefits: [
       "Ask in natural language; get data‑backed answers",
       "Executes actions via GraphQL/REST tools",
@@ -41,7 +37,6 @@ const features = [
     title: "Module Builder (Powered by Varuni)",
     description: "Use natural language to create or modify modules, panels, modals, and workflows—fully versioned and auditable.",
     icon: Brain,
-    gradient: "from-purple-500 to-pink-500",
     benefits: [
       "Build modules with prompts",
       "Modify panels and forms on demand",
@@ -55,7 +50,6 @@ const features = [
     title: "Modular Industry Packs",
     description: "Start with pre-built packs for Restaurants, Hospitality, Child-Care, Self-Storage, Retail, and Cannabis.",
     icon: BarChart3,
-    gradient: "from-blue-500 to-cyan-500",
     benefits: [
       "Comprehensive pre-built modules",
       "Best-practice dashboards",
@@ -69,7 +63,6 @@ const features = [
     title: "Enterprise Access & Security",
     description: "Granular roles, SSO (SAML/OIDC), retention controls, and audit trails across all modules.",
     icon: Users,
-    gradient: "from-green-500 to-emerald-500",
     benefits: [
       "Role-based permissions",
       "Org-wide audit trails",
@@ -83,7 +76,6 @@ const features = [
     title: "Operations & Analytics",
     description: "Operational workflows, rich analytics, and automation hooks for any industry pack.",
     icon: Package,
-    gradient: "from-orange-500 to-red-500",
     benefits: [
       "Operational KPIs",
       "Automations & webhooks",
@@ -97,7 +89,6 @@ const features = [
     title: "Scheduling & Workforce",
     description: "AI-optimized staffing, shift planning, and team performance across industries.",
     icon: Calendar,
-    gradient: "from-indigo-500 to-purple-500",
     benefits: [
       "AI shift planning",
       "Availability & PTO",
@@ -111,7 +102,6 @@ const features = [
     title: "Integrations & Robotics",
     description: "Connect to POS/ERP/HRIS and optionally monitor robotics fleets and workflows.",
     icon: Bot,
-    gradient: "from-teal-500 to-blue-500",
     benefits: [
       "POS/ERP/HRIS integrations",
       "GraphQL API access",
@@ -135,6 +125,7 @@ const integrations = [
 
 export function FeaturesShowcase() {
   const [activeFeature, setActiveFeature] = useState(features[0]);
+  const { currentTheme } = useBrandTheme();
 
   return (
     <section id="features" className="relative py-24 bg-gradient-to-b from-background to-muted/20">
@@ -143,12 +134,24 @@ export function FeaturesShowcase() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm text-primary mb-4">
+          <div
+            className="inline-flex items-center rounded-full px-4 py-2 text-sm mb-4 border transition-colors duration-500"
+            style={{
+              backgroundColor: `${currentTheme.color}10`,
+              borderColor: `${currentTheme.color}30`,
+              color: currentTheme.color
+            }}
+          >
             ✨ Modular Platform • AI-Built Workflows
           </div>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
             Build Your ERP
-            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent"> Your Way</span>
+            <span
+              className="bg-clip-text text-transparent transition-colors duration-500"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${currentTheme.color}, ${currentTheme.color}AA)`
+              }}
+            > Your Way</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             Start with industry packs, then let Varuni—our AI operations agent—analyze, recommend, and execute. From insights to actions, including building modules, panels, and workflows on demand.
@@ -160,28 +163,43 @@ export function FeaturesShowcase() {
           {features.map((feature) => (
             <div
               key={feature.id}
-              className={`glass-pane rounded-xl p-6 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                activeFeature.id === feature.id
-                  ? 'ring-2 ring-primary shadow-lg shadow-primary/20'
-                  : 'hover:shadow-md'
-              }`}
+              className={`glass-pane rounded-xl p-6 cursor-pointer transition-all duration-300 hover:scale-105 border`}
+              style={{
+                borderColor: activeFeature.id === feature.id ? currentTheme.color : 'transparent',
+                boxShadow: activeFeature.id === feature.id ? `0 0 20px ${currentTheme.color}20` : 'none'
+              }}
               onClick={() => setActiveFeature(feature)}
             >
-              <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${feature.gradient} mb-4`}>
+              <div
+                className="inline-flex p-3 rounded-lg mb-4 transition-colors duration-500"
+                style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.color}, ${currentTheme.color}80)` }}
+              >
                 <feature.icon className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-muted-foreground mb-4">{feature.description}</p>
-              <div className="text-sm font-medium text-primary">{feature.stats}</div>
+              <div
+                className="text-sm font-medium transition-colors duration-500"
+                style={{ color: currentTheme.color }}
+              >
+                {feature.stats}
+              </div>
             </div>
           ))}
         </div>
 
         {/* Active Feature Detail */}
-        <div className="glass-pane rounded-2xl p-8 md:p-12 mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="glass-pane rounded-2xl p-8 md:p-12 mb-16 relative overflow-hidden">
+          <div
+            className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none"
+            style={{ backgroundColor: currentTheme.color }}
+          />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
             <div>
-              <div className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${activeFeature.gradient} mb-6`}>
+              <div
+                className="inline-flex p-4 rounded-xl mb-6 transition-colors duration-500"
+                style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.color}, ${currentTheme.color}80)` }}
+              >
                 <activeFeature.icon className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-3xl font-bold mb-4">{activeFeature.title}</h3>
@@ -189,21 +207,39 @@ export function FeaturesShowcase() {
               <ul className="space-y-3">
                 {activeFeature.benefits.map((benefit, index) => (
                   <li key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <div
+                      className="w-2 h-2 rounded-full transition-colors duration-500"
+                      style={{ backgroundColor: currentTheme.color }}
+                    />
                     <span className="text-foreground">{benefit}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 p-4 bg-primary/5 rounded-lg">
-                <div className="flex items-center gap-2 text-primary font-semibold">
+              <div
+                className="mt-6 p-4 rounded-lg transition-colors duration-500"
+                style={{ backgroundColor: `${currentTheme.color}10` }}
+              >
+                <div
+                  className="flex items-center gap-2 font-semibold transition-colors duration-500"
+                  style={{ color: currentTheme.color }}
+                >
                   <TrendingUp className="h-5 w-5" />
                   {activeFeature.stats}
                 </div>
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center">
-                <div className={`p-8 rounded-xl bg-gradient-to-r ${activeFeature.gradient}`}>
+              <div
+                className="aspect-square rounded-2xl flex items-center justify-center transition-colors duration-500"
+                style={{ backgroundImage: `linear-gradient(to bottom right, ${currentTheme.color}20, ${currentTheme.color}05)` }}
+              >
+                <div
+                  className="p-8 rounded-xl transition-colors duration-500 shadow-2xl"
+                  style={{
+                    backgroundImage: `linear-gradient(135deg, ${currentTheme.color}, ${currentTheme.color}80)`,
+                    boxShadow: `0 20px 50px ${currentTheme.color}40`
+                  }}
+                >
                   <activeFeature.icon className="h-16 w-16 text-white" />
                 </div>
               </div>
@@ -228,7 +264,10 @@ export function FeaturesShowcase() {
                     />
                   </div>
                 ) : (
-                  <integration.icon className="h-6 w-6 text-foreground/80 mb-2" />
+                  <integration.icon
+                    className="h-6 w-6 mb-2 transition-colors duration-500"
+                    style={{ color: `${currentTheme.color}AA` }}
+                  />
                 )}
                 <div className="text-sm font-medium text-foreground/90 text-center">{integration.name}</div>
               </div>

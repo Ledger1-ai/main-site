@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/sections/cta-section";
-import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: "Contact – BasaltHQ",
@@ -21,9 +20,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-12">
       <CTASection />
-      <Footer />
     </div>
   );
 }

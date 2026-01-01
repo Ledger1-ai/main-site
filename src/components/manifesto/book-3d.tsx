@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 interface Book3DProps {
     coverImage: string;
     title: string;
-    color: "teal" | "red";
+    color?: string;
     className?: string;
 }
 
-export function Book3D({ coverImage, title, color, className }: Book3DProps) {
+export function Book3D({ coverImage, title, color = "#14b8a6", className }: Book3DProps) {
     // Proven CSS 3D Box Structure
     // Widened to ~1.4 ratio (340px/480px) to prevent cropping and match user request.
     return (
@@ -46,10 +46,10 @@ export function Book3D({ coverImage, title, color, className }: Book3DProps) {
                     }}
                 >
                     {/* Spine Text or Color */}
-                    <div className={cn(
-                        "w-full h-full opacity-90 flex items-center justify-center",
-                        color === "teal" ? "bg-teal-900" : "bg-red-900"
-                    )}>
+                    <div
+                        className="w-full h-full opacity-90 flex items-center justify-center"
+                        style={{ backgroundColor: color }} // Dynamic color
+                    >
                         <span className="text-white/50 text-xs tracking-widest rotate-90 whitespace-nowrap font-mono">{title.substring(0, 20)}...</span>
                     </div>
                 </div>
@@ -63,10 +63,10 @@ export function Book3D({ coverImage, title, color, className }: Book3DProps) {
                     }}
                 >
                     <div className="w-full h-full flex items-center justify-center p-8">
-                        <div className={cn(
-                            "text-center p-4 border border-dashed rounded opacity-30",
-                            color === "teal" ? "border-teal-500 text-teal-500" : "border-red-500 text-red-500"
-                        )}>
+                        <div
+                            className="text-center p-4 border border-dashed rounded opacity-30"
+                            style={{ borderColor: color, color: color }}
+                        >
                             <p className="text-sm font-mono uppercase tracking-widest">{title}</p>
                         </div>
                     </div>
