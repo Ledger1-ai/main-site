@@ -1,6 +1,6 @@
 {
-  "name": "ledger1-website",
-  "version": "0.1.0",
+  "name": "basalthq-website",
+  "version": "1.0.0j",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
