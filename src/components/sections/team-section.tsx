@@ -38,14 +38,14 @@ export function TeamSection() {
       twitter: "https://twitter.com/shahir1395",
       linkedin: "https://www.linkedin.com/in/shahir-monjur/"
     }, */
-    {
+    /* {
       name: "John Garcia",
       role: "Senior VP, AI Research",
       description: "Senior research executive advancing AI innovation and machine learning capabilities.",
       image: "/team/member5.png",
       twitter: "https://twitter.com/JohnG1isit",
       linkedin: "https://www.linkedin.com/in/john-garcia-54ab73398/"
-    }
+    } */
   ];
 
   return (
