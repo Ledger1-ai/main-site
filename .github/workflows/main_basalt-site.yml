@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - portalpay
+name: Build and deploy Node.js app - BasaltHQ Site
 
 on:
   push:
@@ -75,10 +75,10 @@ jobs:
           name: node-app
       - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v5
         with:
           app-name: "basalt-site"
           slot-name: "Production"
           package: release.zip
-
+          startup-command: "node server.js"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_06A247B0B34A41A4BE3031B76349E7F7 }}
